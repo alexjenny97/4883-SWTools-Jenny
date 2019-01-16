@@ -1,0 +1,3 @@
+- Here is a link to Origin (a graphing software tool): https://www.originlab.com/
+- This is a full-featured data analysis software tool that has graphing and curve fitting and peak analysis. It also has batch processing without programming.
+- I chose this because it seems like a good graphing tool, has a 21 day trial and graphing is most likely what I would be doing out of the provided list.
