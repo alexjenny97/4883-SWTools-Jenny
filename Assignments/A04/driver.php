@@ -75,22 +75,27 @@ include "load_stat_codes.php";
 //         // and only returns the first 1000 results (so my console doesn't print over a million rows)
 //         // If you combine limit with an order by statement, you could return the top N results or 
 //         // bottom N results (like top 5 rushers for example)
-        $sql = "SELECT `players_stats`.`playerid`,`players_stats`.`season`,`players_stats`.`club`,`players_stats`.`statid`,`stat_codes`.`name`,`players_stats`.`yards`
-                FROM `players_stats`,`stat_codes`
-                WHERE `players_stats`.`statid` = `stat_codes`.`id` AND `stat_codes`.`name` LIKE '%goal%'
-                LIMIT 0,1000";
+        // $sql = "SELECT `players_stats`.`playerid`,`players_stats`.`season`,`players_stats`.`club`,`players_stats`.`statid`,`stat_codes`.`name`,`players_stats`.`yards`
+        //         FROM `players_stats`,`stat_codes`
+        //         WHERE `players_stats`.`statid` = `stat_codes`.`id` AND `stat_codes`.`name` LIKE '%goal%'
+        //         LIMIT 0,1000";
+
+
+// Count number of teams a player played for.
+        $sql = "SELECT 'players.name', COUNT(distinct 'players.club') 
+                FROM 'players' ";
 
         // Send it to our runQuery function with our mysqli resource variable
         $response = runQuery($mysqli, $sql);
-
+        echo $response;
         // handle the response
-        if ($response['success']) {
-            // pull the data out of the result array
-            $data = $response['result'];
+        // if ($response['success']) {
+        //     // pull the data out of the result array
+        //     $data = $response['result'];
 
-            echo "playerid\tseason\tclub\tyards\t\tstatid\tname\n";
-            foreach ($data as $row) {
-                echo "{$row['playerid']}\t{$row['season']}\t{$row['club']}\t\t{$row['yards']}\t\t\t{$row['statid']}\t\t{$row['name']}\n";
-            }
-        }
+        //     echo "playerid\tseason\tclub\tyards\t\tstatid\tname\n";
+        //     foreach ($data as $row) {
+        //         echo "{$row['playerid']}\t{$row['season']}\t{$row['club']}\t\t{$row['yards']}\t\t\t{$row['statid']}\t\t{$row['name']}\n";
+        //     }
+        // }
     //}
