@@ -12,8 +12,7 @@ if (mysqli_connect_errno($mysqli)) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
 }
 
-
-/* // Helper function to run sql
+ // Helper function to run sql
 require "query_function.php";
 
 // Include my example functions
@@ -94,4 +93,4 @@ include "load_stat_codes.php";
                 echo "{$row['playerid']}\t{$row['season']}\t{$row['club']}\t\t{$row['yards']}\t\t\t{$row['statid']}\t\t{$row['name']}\n";
             }
         }
-    //} */
+    //}
