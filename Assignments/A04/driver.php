@@ -473,7 +473,11 @@ if ($response['success'])
 // Output: List the top 10 teams by lowest average number of plays.
 echo "\n\nQuestion 6: Find the team with the least amount of average plays every year";
 
-
+// what I have so far
+//SELECT plays.clubid , `plays`.gameid, `plays`.Count(gameid) AS numPlays, `games`.season
+// FROM `plays`FULL JOIN `games` ON `plays`.gameid = `games`.gameid
+// GROUP BY(`games'.season`)
+// ORDER BY numPlays
 
 
 
@@ -695,6 +699,77 @@ if ($response['success'])
               
         }
         echo "</table>";
+}
+        // if ($resp2['success' ])
+        // {
+        //         echo "yay";
+        // }
+        // else
+        // {
+        //         echo "boo";
+        // }
+
+//------------------------------------------------------------------------------------
+// Find the top 5 most common last names in the NFL.
+echo "\n\nQuestion 10: Find the top 5 most common last names in the NFL.";
+
+
+
+$sql = "SELECT name, id
+FROM `players`
+GROUP BY id
+ORDER BY name;";
+
+$response = runQuery($mysqli, $sql);
+
+// neat error checking 
+if ($response['success']) 
+{
+        //  echo "all good";
+        // pull the data out of the result array
+        $data = $response['result'];
+       print_r($data);
+
+
+        // make list of percents
+        
+       // print_r($idList);
+       //  $newIds = implode("','", $idList);
+        // $betterArray = [];
+        // foreach($key as $value from $idList)
+        // {
+        //         $betterArray[] = [value][1]
+        // }
+
+
+       
+      // print_r($idList);
+     
+
+
+        // // print data found
+        // echo "<table>";
+        // echo "<tr> <td> #</td> 
+        // <td> Club </td>
+        //  <td>Win/Loss Percent </td> </tr>";
+        // echo "<tr> <td> =====</td> 
+        // <td> ========== </td> 
+        // <td> ==================== </td> </tr>";
+
+        // $i = 1;
+        // for($j=0; $j<32; $j++)
+        // {                
+        //       $value = reset($idList);
+        //       $key = key($idList);
+        //         unset($idList[$key]);
+              
+        //       print ("<tr> <td>".$i."</td>
+        //         <td>".$key."</td> 
+        //         <td>".$value."</td> </tr>");
+        //         $i++;
+              
+        // }
+        // echo "</table>";
 }
         // if ($resp2['success' ])
         // {
