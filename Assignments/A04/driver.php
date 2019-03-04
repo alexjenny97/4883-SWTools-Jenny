@@ -1,10 +1,11 @@
 <?php
 //Connect to mysql
 $host = "cs2.mwsu.edu";             // server name
-$user = "software_tools";           // user name
+$user = "**";           // user name
 
+$file = fopen("outfile.txt", 'w');
 // Get username and password from slack
-$password = "horseblanketdonkey";   // password 
+$password = "***";   // password 
 $database = "nfl_data";   // database 
 $mysqli = mysqli_connect($host, $user, $password, $database);
 
@@ -81,8 +82,9 @@ include "load_stat_codes.php";
         //         WHERE `players_stats`.`statid` = `stat_codes`.`id` AND `stat_codes`.`name` LIKE '%goal%'
         //         LIMIT 0,1000";
 
+        $stringvar = "";
 
-        echo "<pre>";
+        echo"<pre>";
         echo "Alex Jenny\nSQL program answers various nfl questions\n\n\n";
 //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Question 1: Count number of teams a player played for.
@@ -715,10 +717,8 @@ echo "\n\nQuestion 10: Find the top 5 most common last names in the NFL.";
 
 
 
-$sql = "SELECT name, id
-FROM `players`
-GROUP BY id
-ORDER BY name;";
+$sql = "SELECT DISTINCT(SUBSTR(name, INSTR(name, '.'))) as lname
+ FROM players";
 
 $response = runQuery($mysqli, $sql);
 
@@ -728,17 +728,47 @@ if ($response['success'])
         //  echo "all good";
         // pull the data out of the result array
         $data = $response['result'];
-       print_r($data);
-
-
-        // make list of percents
+        $numOcc = [];
+        foreach($data as $attr => $lname) 
+        {
+               // print_r( $lname);
+                $numOcc[$lname['lname']] = 0;
+        }
+        //print_r($numOcc);
+        $sql = "SELECT DISTINCT(id), SUBSTR(name, INSTR(name, '.')) as lname
+        FROM players 
+        WHERE LENGTH(SUBSTR(name, INSTR(name, '.'))) != 0
+        ORDER BY SUBSTR(name, INSTR(name, '.'))";
         
-       // print_r($idList);
-       //  $newIds = implode("','", $idList);
-        // $betterArray = [];
-        // foreach($key as $value from $idList)
+        $responce = runQuery($mysqli, $sql);
+        if ($responce['success']){
+                $data = $responce['result'];
+                print_r($data);
+                //$i = 
+                $j = 0;
+                foreach ($numOcc as $name => $count) 
+                {
+                        $end = false;
+                        while (!$end) {
+                                print( $name . " == " . $data[$j]['lname']);
+                                if ($name == $data[$j]['lname']) {
+                                        $count++;
+                                        $j++;
+                                }
+                                else {
+                                        $numOcc[$name] = $count;
+                                        //$i++;
+                                        $end = true;
+                                }
+                        }
+                }
+
+                print_r($numOcc);        
+        }
+        else {echo 'failue. you, not the program'; }
+        // foreach($key )
         // {
-        //         $betterArray[] = [value][1]
+        //        $numOcc[$data[]]
         // }
 
 
@@ -770,6 +800,7 @@ if ($response['success'])
               
         // }
         // echo "</table>";
+      //  fwrite($file, $stringvar);
 }
         // if ($resp2['success' ])
         // {
@@ -779,4 +810,3 @@ if ($response['success'])
         // {
         //         echo "boo";
         // }
-
