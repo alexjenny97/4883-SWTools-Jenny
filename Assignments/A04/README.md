@@ -7,18 +7,13 @@
   - get_players2.php
     - This was another example from professor Griffin. This code should not be run.
   - index.html
-    - This is the output of the program. This will show both the questions and the answers. 
+    - This is another small step to getting the program running. Does not affect program.  
   - load_stat_codes.php
-    - This will load stat codes. This is not necessary for the project to run but it was helpful when developing. 
+    - This is code from professor Griffin. 
   - query_function.php
-   - Actually runs the querey and returns an associative array. 
+   - Actually runs the querey and returns an associative array. This is from professor Griffin.
  - yo.php 
   - This file is not necessary to run any code. It was part of an example. 
   
-    
+- The link to the output is here: http://cs2.mwsu.edu/~ajenny/software_tools/driver.php
 
-
-project overview (description)
-list of files,
-file descriptions,
-any instructions needed to run or help grade your project
