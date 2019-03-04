@@ -12,8 +12,8 @@
     - This is code from professor Griffin. 
   - query_function.php
    - Actually runs the querey and returns an associative array. This is from professor Griffin.
- - yo.php 
-  - This file is not necessary to run any code. It was part of an example. 
+  - yo.php 
+    - This file is not necessary to run any code. It was part of an example. 
   
 - The link to the output is here: http://cs2.mwsu.edu/~ajenny/software_tools/driver.php
 
