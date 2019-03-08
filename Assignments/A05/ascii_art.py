@@ -69,9 +69,9 @@ def resize(img,width):
 
 if __name__=='__main__':
     # picture to print
-    path = 'vans.jpg'
+    path = str(sys.argv[1])
     #cahracters and color values
-    Ascii,colors = img_to_ascii(path="vans.jpg",width=800)
+    Ascii,colors = img_to_ascii(path=path,width=800)
 
     hsize = 1200
     width = 800
@@ -82,7 +82,7 @@ if __name__=='__main__':
     newImg = Image.new('RGBA', (800, 1200), (255,255,255,255))
 
     # Open a TTF file and specify the font size.
-    fnt = ImageFont.truetype('caricature.ttf', 14)
+    fnt = ImageFont.truetype(str(sys.argv[3]), int(sys.argv[4]))
 
     # get a drawing context for your new image
     drawOnMe = ImageDraw.Draw(newImg)
@@ -106,4 +106,4 @@ if __name__=='__main__':
     newImg.show()
 
     # Save the image.
-    newImg.save('output.png')
+    newImg.save(str(sys.argv[2]))
